@@ -86,6 +86,12 @@ namespace Quest
                     Console.WriteLine("I guess you did...ok? ...sorta. Still, you should get out of my sight.");
                 }
 
+                // Show prize
+
+                Prize adventurePrize = new Prize("A golden trophy that shines brighter than the sun");
+
+                adventurePrize.ShowPrize(theAdventurer);
+
                 // Repeat the adventure if the user wants
                 Console.WriteLine();
                 Console.WriteLine("Would you like to start the adventure over? : (Y/N)");
