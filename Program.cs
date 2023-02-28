@@ -50,7 +50,7 @@ namespace Quest
                 // Get the user's choice for what they want their adventurer to be named
                 Console.WriteLine("What is your name, adventurer? :");
                 string adventurerName = Console.ReadLine();
-                Adventurer theAdventurer = new Adventurer(adventurerName);
+                Adventurer theAdventurer = new Adventurer(adventurerName, new Robe(), new Hat());
 
                 Console.WriteLine(theAdventurer.GetDescription());
 
