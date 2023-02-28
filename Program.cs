@@ -42,14 +42,17 @@ namespace Quest
             int minAwesomeness = 0;
             int maxAwesomeness = 100;
 
-            bool Repeat = true;
-            while (Repeat)
+            bool Repeat = false;
+
+            do
             {
                 // Make a new "Adventurer" object using the "Adventurer" class
                 // Get the user's choice for what they want their adventurer to be named
                 Console.WriteLine("What is your name, adventurer? :");
                 string adventurerName = Console.ReadLine();
                 Adventurer theAdventurer = new Adventurer(adventurerName);
+
+                Console.WriteLine(theAdventurer.GetDescription());
 
                 // A list of challenges for the Adventurer to complete
                 // Note we can use the List class here because have the line "using System.Collections.Generic;" at the top of the file.
@@ -88,15 +91,17 @@ namespace Quest
                 Console.WriteLine("Would you like to start the adventure over? : (Y/N)");
                 string startOver = Console.ReadLine();
 
-                if (startOver == "N" || startOver == "n")
+                if (startOver == "Y" || startOver == "y")
                 {
-                    Repeat = false;
+                    Repeat = true;
+                    Console.WriteLine();
                 }
                 else
                 {
-                    Console.WriteLine();
+                    Repeat = false;
                 }
             }
+            while (Repeat);
         }
     }
 }
