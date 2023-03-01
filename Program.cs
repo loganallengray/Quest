@@ -19,6 +19,11 @@ namespace Quest
                 "What's the answer to life, the universe and everything?", 42, 25);
             Challenge whatSecond = new Challenge(
                 "What is the current second?", DateTime.Now.Second, 50);
+            Challenge sphinxRiddle = new Challenge("If a man has four legs in the morning and two at noon, how many does he have at night?", 3, 25);
+            Challenge twoTimesTwo = new Challenge("2 x 2?", 4, 10);
+            Challenge howManyFingers = new Challenge("How many fingers does my hand have?", 5, 20);
+            Challenge howOld = new Challenge("How old am I?", 19, 20);
+            Challenge howManyPoints = new Challenge("How many points do you think you have?", 0, 20);
 
             int randomNumber = new Random().Next() % 10;
             Challenge guessRandom = new Challenge("What number am I thinking of?", randomNumber, 25);
@@ -30,8 +35,22 @@ namespace Quest
     3) George
     4) Ringo
 ",
-                4, 20
-            );
+                4, 20);
+
+            // List of all challenges
+            List<Challenge> allChallenges = new List<Challenge>()
+            {
+                twoPlusTwo,
+                theAnswer,
+                whatSecond,
+                sphinxRiddle,
+                twoPlusTwo,
+                howManyFingers,
+                howOld,
+                howManyPoints,
+                guessRandom,
+                favoriteBeatle
+            };
 
             // "Awesomeness" is like our Adventurer's current "score"
             // A higher Awesomeness is better
@@ -44,26 +63,38 @@ namespace Quest
 
             bool Repeat = false;
 
+            Console.WriteLine("What is your name, adventurer? :");
+            string adventurerName = Console.ReadLine();
+            Adventurer theAdventurer = new Adventurer(adventurerName, new Robe(), new Hat());
+            Console.WriteLine();
             do
             {
                 // Make a new "Adventurer" object using the "Adventurer" class
                 // Get the user's choice for what they want their adventurer to be named
-                Console.WriteLine("What is your name, adventurer? :");
-                string adventurerName = Console.ReadLine();
-                Adventurer theAdventurer = new Adventurer(adventurerName, new Robe(), new Hat());
 
                 Console.WriteLine(theAdventurer.GetDescription());
+                Console.WriteLine();
 
                 // A list of challenges for the Adventurer to complete
                 // Note we can use the List class here because have the line "using System.Collections.Generic;" at the top of the file.
-                List<Challenge> challenges = new List<Challenge>()
+                List<Challenge> challenges = new List<Challenge>();
+
+                //Select 5 random challenges for our Adventurer to complete, add them to the challenges list above.
+                List<int> indexes = new List<int>();
+
+                for (int i = 0; i < 5; i++)
                 {
-                    twoPlusTwo,
-                    theAnswer,
-                    whatSecond,
-                    guessRandom,
-                    favoriteBeatle
-                };
+                    int index = randomNum(0, allChallenges.Count);
+                    if (!indexes.Contains(index))
+                    {
+                        indexes.Add(index);
+                    }
+                }
+
+                foreach (int index in indexes)
+                {
+                    challenges.Add(allChallenges[index]);
+                }
 
                 // Loop through all the challenges and subject the Adventurer to them
                 foreach (Challenge challenge in challenges)
@@ -108,6 +139,12 @@ namespace Quest
                 }
             }
             while (Repeat);
+        }
+
+        public static int randomNum(int min, int max)
+        {
+            int rand = new Random().Next(min, max);
+            return rand;
         }
     }
 }
