@@ -5,9 +5,15 @@ namespace Quest
 {
     public class Hat
     {
-        public static int ShininessLevel = 8;
+        public static int ShininessLevel { get; set; }
 
-        public string ShininessDescription = GetShininessDescription();
+        public string ShininessDescription { get; }
+
+        public Hat(int shininessLevel)
+        {
+            ShininessLevel = shininessLevel;
+            ShininessDescription = GetShininessDescription();
+        }
 
         static string GetShininessDescription()
         {

@@ -12,6 +12,8 @@ namespace Quest
         //  So it can be read and changed by any code in the application
         public int Awesomeness { get; set; }
 
+        public int QuestsWon { get; set; }
+
         // Robe
         public Robe ColorfulRobe { get; }
 
@@ -23,6 +25,7 @@ namespace Quest
         {
             Name = name;
             Awesomeness = 50;
+            QuestsWon = 0;
             ColorfulRobe = robe;
             ShinyHat = hat;
         }

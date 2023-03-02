@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 // Every class in the program is defined within the "Quest" namespace
@@ -65,8 +66,27 @@ namespace Quest
 
             Console.WriteLine("What is your name, adventurer? :");
             string adventurerName = Console.ReadLine();
-            Adventurer theAdventurer = new Adventurer(adventurerName, new Robe(), new Hat());
             Console.WriteLine();
+
+            Console.WriteLine("What colors are your robe? : (Separate them with a space afterwards. Ex. 'Green Red Orange')");
+            string adventurerRobeColorsString = Console.ReadLine();
+            List<string> adventurerRobeColors = new List<string>();
+            adventurerRobeColors = adventurerRobeColorsString.Split(' ').ToList();
+            Console.WriteLine();
+
+            Console.WriteLine("How long is your robe? : (In inches)");
+            string adventurerRobeLengthString = Console.ReadLine();
+            int.TryParse(adventurerRobeLengthString, out int adventurerRobeLength);
+            Console.WriteLine();
+
+            Console.WriteLine("How shiny is your hat? : (Scale of 1-10)");
+            string adventurerHatShininessString = Console.ReadLine();
+            int.TryParse(adventurerHatShininessString, out int adventurerHatShininess);
+            Console.WriteLine();
+
+            Adventurer theAdventurer = new Adventurer(adventurerName, new Robe(adventurerRobeColors, adventurerRobeLength), new Hat(adventurerHatShininess));
+            Console.WriteLine();
+
             do
             {
                 // Make a new "Adventurer" object using the "Adventurer" class
@@ -131,6 +151,8 @@ namespace Quest
                 if (startOver == "Y" || startOver == "y")
                 {
                     Repeat = true;
+                    theAdventurer.Awesomeness += (theAdventurer.QuestsWon * 10);
+                    theAdventurer.QuestsWon = 0;
                     Console.WriteLine();
                 }
                 else

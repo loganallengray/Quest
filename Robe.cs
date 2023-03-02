@@ -5,12 +5,14 @@ namespace Quest
 {
     public class Robe
     {
-        public List<string> Colors = new List<string>{
-            "Red",
-            "Green",
-            "White"
-        };
+        public List<string> Colors = new List<string>();
 
         public int Length = 30;
+
+        public Robe(List<string> colors, int length)
+        {
+            Colors = colors;
+            Length = length;
+        }
     }
 }
